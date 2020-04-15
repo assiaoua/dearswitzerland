@@ -38,6 +38,7 @@ Rails.application.configure do
   
   config.action_mailer.asset_host = 'http://localhost:3000'
   config.action_mailer.default_url_options = { host: 'http://localhost:3000' }
+  config.hosts << "assias.local"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
