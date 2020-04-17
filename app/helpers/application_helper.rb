@@ -33,19 +33,29 @@ module ApplicationHelper
         ["Valais / Wallis", "VS"],
         ["Neuchâtel", "NE"],
         ["Genève", "GE"],
-        ["Jura", "JU"]
+        ["Jura", "JU"],
     ].sort_by(&:first)
+    cantons.append [t("canton.abroad"), :abroad]
+    cantons.append [t("canton.other"), :other]
     cantons.insert(0, [t("letters.edit.placeholder_canton"),"", disabled: true, selected: canton.blank?])
   end
 
+  VARIANTS = {
+      thumbnail: "220x311",
+      gallery: "824"
+  }.freeze
+
+  def og_image(letter)
+    if (letter.reviewed_pdf.present? && letter.reviewed_pdf.previewable?)
+      return url_for(letter.reviewed_pdf.preview(resize: VARIANTS[:thumbnail]))
+    else
+      return image_url("instagram.#{@letter.lang}.png")
+    end
+  end
+
   def letter_preview(letter, variant)
-    variants = {
-        thumbnail: "220x311",
-        gallery: "824"
-        # gallery: 1648
-    }
     return unless letter.reviewed_pdf.present?
     return unless letter.reviewed_pdf.previewable?
-    return image_tag letter.reviewed_pdf.preview(resize: variants[variant])
+    return image_tag letter.reviewed_pdf.preview(resize: VARIANTS[variant])
   end
 end

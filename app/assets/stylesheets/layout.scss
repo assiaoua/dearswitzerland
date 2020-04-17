@@ -30,6 +30,7 @@ header nav {
 
   ul#locales {
     margin-left: 100px;
+    margin-right: 20px;
   }
 
   li {
@@ -51,10 +52,10 @@ header nav {
 
 #logo {
   position: absolute;
-  left: 30px;
-  top: 15px;
-  height: 210px;
-  width: 210px;
+  left: 50px;
+  top: 30px;
+  height: 180px;
+  width: 180px;
   z-index: -1;
 }
 
@@ -70,7 +71,7 @@ h1 {
   text-decoration: underline;
   font-size: 40px;
   text-transform: uppercase;
-  line-height: 0.7;
+  line-height: 0.9;
 
   strong {
     font-size: 90px;
@@ -92,7 +93,7 @@ input[type=submit], a.button, span.button {
   border: 0px;
   font-weight: bold;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-  
+
   &:hover {
     background-color: #666666;
     text-decoration: none;
@@ -240,6 +241,11 @@ form#step2 {
     bottom: 30px;
     right: 110px;
   }
+
+  trix-editor {
+    // don't let "submit letter" button overlap long texts when writing
+    padding-bottom: 85px;
+  }
 }
 
 .letter {
@@ -248,7 +254,7 @@ form#step2 {
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 824px;
-  min-height: 1164px;
+  min-height: 764px;
   margin: auto;
   overflow: hidden;
 
@@ -286,6 +292,12 @@ form#step2 {
     margin: 1em auto;
     width: 300px;
     text-align: center;
+  }
+  .share {
+    a {
+      display: inline-block;
+      padding: 1em;
+    }
   }
 
 }
@@ -360,10 +372,11 @@ footer {
   text-align: center;
   background-color: #ffffff;
   line-height: 1.2;
-  img.icon {
+  a.icon, a.icon img {
     width: 46px;
+    text-decoration: none;
   }
-  address, p {  
+  address, p {
     font-size: 15px;
   }
 
