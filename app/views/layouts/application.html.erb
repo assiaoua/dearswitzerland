@@ -20,10 +20,15 @@
 </head>
 
 <body>
-
+<div id="navbar">
 <header class="pt-1">
   <nav>
-    <ul>
+
+    <span class="menu-toggle" id="js-menu-toggle">
+    <%= image_tag "ic_menu_48px.svg" %>
+    </span>
+
+    <ul class="main-nav" id="js-menu">
       <li class="<%= "active" if :write == @nav %>">
         <%= link_to t("nav.new_letter_path"), new_letter_path %>
       </li>
@@ -41,7 +46,7 @@
       </li>
     </ul>
 
-    <ul id="locales">
+    <ul class="language-nav" id="locales">
       <% I18n.available_locales.each do |locale| %>
         <li class="<%= "active" if I18n.locale == locale %>">
           <%= link_to locale.to_s.upcase, locale: locale %>
@@ -50,8 +55,9 @@
     </ul>
   </nav>
 </header>
+</div>
 
-<main>
+<main class="main">
   <%= yield %>
 </main>
 
@@ -88,6 +94,18 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-163371515-1');
+</script>
+<script>
+    let mainNav = document.getElementById('js-menu');
+    let langNav = document.getElementById('locales');
+    let barNav = document.getElementById('navbar');
+    let navBarToggle = document.getElementById('js-menu-toggle');
+
+    navBarToggle.addEventListener('click', function () {
+        mainNav.classList.toggle('active-main-nav');
+        langNav.classList.toggle('active-lang-nav');
+        barNav.classList.toggle('active-navbar');
+    });
 </script>
 
 </body>
